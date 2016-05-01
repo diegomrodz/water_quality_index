@@ -4,13 +4,13 @@
 
 int main(void) 
 {
-	int i = 0;
 	double q1 = 0.0;
 
-	for (; i <= 100; i += 1) 
+	for (; q1 <= 140.0; q1 += 10) 
 	{
 		printf("q1 = %lf, qO2(q1) = %lf\n", q1, qO2(q1));
 	}
 
+		
 	return 0;
 }
