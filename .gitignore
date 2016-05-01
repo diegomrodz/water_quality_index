@@ -1,3 +1,7 @@
+# Custom Files
+bin/
+src/
+
 # Object files
 *.o
 *.ko
