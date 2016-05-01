@@ -1,6 +1,6 @@
 CC=gcc
 STD=c99
-LIBS=lib/test
+LIBS=$(wildcard lib/*)
 INCLUDE_PATH=lib/
 
 tests: libs
