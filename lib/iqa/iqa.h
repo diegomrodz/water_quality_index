@@ -1,6 +1,37 @@
 #ifndef FILE_IQA
 #define FILE_IQA
 
+// Pesos de cada parâmetro na equação IQA
+#define IQA_O2_WEIGHT  0.17
+#define IQA_CF_WEIGHT  0.15
+#define IQA_PH_WEIGHT  0.12
+#define IQA_DBO_WEIGHT 0.10
+#define IQA_DT_WEIGHT  0.10
+#define IQA_NT_WEIGHT  0.10
+#define IQA_FT_WEIGHT  0.10
+#define IQA_TU_WEIGHT  0.10
+#define IQA_ST_WEIGHT  0.10
+
+// Range Ótimo do índice IQA
+#define IQA_BEST_U 100
+#define IQA_BEST_L 80
+
+// Range Bom do índice IQA
+#define IQA_GOOD_U 79
+#define IQA_GOOD_L 51
+
+// Range Aceitável do índice IQA
+#define IQA_OK_U 50
+#define IQA_OK_L 37
+
+// Range Ruim do índice IQA
+#define IQA_BAD_U 36
+#define IQA_BAD_L 20
+
+// Range Péssima do índice IQA
+#define IQA_WORST_U 19
+#define IQA_WORST_L 0
+
 // Pesos para equação do percentual de oxigênio dissolvido
 #define O2_WEIGHT_A 100.8
 #define O2_WEIGHT_B -106
@@ -47,6 +78,31 @@
 #define ST_WEIGHT_C 0.03009
 #define ST_WEIGHT_D -0.1185
 
+// Estrutura que carrega dados de uma medição
+typedef struct 
+{
+	// Parâmetros na ordem de relevância para o índice
+	double O2;
+	double CF;
+	double PH;
+	double DBO;
+	double DT;
+	double NT;
+	double FT;
+	double TU;
+	double ST;
+} IQA_T;
+
+// Enumeração da classificação do IQA
+typedef enum 
+{
+	Best,
+	Good,
+	OK,
+	Bad,
+	Worst
+} IQAIndex;
+
 // Definição das funções de cada um dos parâmetros
 double qO2 (double O2);
 double qCF (double CF);
@@ -58,5 +114,8 @@ double qTU (double TU);
 double qDT (double DT);
 double qST (double ST);
 
+double iqa(IQA_T t);
+
+IQAIndex iqa_index(double iqa);
      
 #endif
