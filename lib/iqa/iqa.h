@@ -50,7 +50,7 @@
 
 // Pesos para equação do DBO (Demanda Bioquímica de Oxigênio)
 #define DBO_WEIGHT_A 102.6
-#define DBO_WEIGHT_B -0.01101
+#define DBO_WEIGHT_B -0.1101
 
 // Pesos para equação do fósforo total
 #define FT_WEIGHT_A 213.7

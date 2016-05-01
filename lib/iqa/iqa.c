@@ -8,15 +8,15 @@ double iqa(IQA_T t)
 
 	// Realiza o produtório ponderado dos parâmetros com seus
 	// respectivos pesos
-	p  = (t.O2  * IQA_O2_WEIGHT);
-	p *= (t.CF  * IQA_CF_WEIGHT);
-	p *= (t.PH  * IQA_PH_WEIGHT);
-	p *= (t.DBO * IQA_DBO_WEIGHT);
-	p *= (t.DT  * IQA_DT_WEIGHT);
-	p *= (t.NT  * IQA_NT_WEIGHT);
-	p *= (t.FT  * IQA_FT_WEIGHT);
-	p *= (t.TU  * IQA_TU_WEIGHT);
-	p *= (t.ST  * IQA_ST_WEIGHT);
+	p  = pow(t.O2,  IQA_O2_WEIGHT);
+	p *= pow(t.CF,  IQA_CF_WEIGHT);
+	p *= pow(t.PH,  IQA_PH_WEIGHT);
+	p *= pow(t.DBO, IQA_DBO_WEIGHT);
+	p *= pow(t.DT,  IQA_DT_WEIGHT);
+	p *= pow(t.NT,  IQA_NT_WEIGHT);
+	p *= pow(t.FT,  IQA_FT_WEIGHT);
+	p *= pow(t.TU,  IQA_TU_WEIGHT);
+	p *= pow(t.ST,  IQA_ST_WEIGHT);
 
 	return p;
 }
@@ -48,9 +48,11 @@ double qO2 (double O2)
 // Equação ajustada à curva do parâmetro CF
 double qCF (double CF)
 {
+	if (CF > 100000) return 3.0;
+
 	double l10 = log10(CF);
 
-	double B = CF_WEIGHT_B * log(CF);
+	double B = CF_WEIGHT_B * l10;
 	double C = CF_WEIGHT_C * pow(l10, 2);
 	double D = CF_WEIGHT_D * pow(l10, 3);
 
@@ -73,7 +75,8 @@ double qDBO (double DBO)
 {
 	if (DBO > 30) return 2.0;
 
-	return DBO_WEIGHT_A * exp(DBO_WEIGHT_B * DBO);
+//	return DBO_WEIGHT_A * exp(DT_WEIGHT_B * DBO);
+	return (102.6 * exp(-0.1101 * DBO));
 }
 
 // Equação ajustada à curva do parâmetro FT
