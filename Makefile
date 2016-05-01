@@ -6,6 +6,7 @@ INCLUDE_PATH=lib/
 
 tests: libs
 	mkdir bin/$(TESTS)
+	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)iqa_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)iqa_test -lm
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qO2_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qO2_test -lm
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qPH_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qPH_test -lm
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qCF_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qCF_test -lm

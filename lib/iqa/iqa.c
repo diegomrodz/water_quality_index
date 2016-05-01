@@ -4,7 +4,21 @@
 // Retorna o IQA da medição
 double iqa(IQA_T t) 
 {
-	return 0;
+	double p;
+
+	// Realiza o produtório ponderado dos parâmetros com seus
+	// respectivos pesos
+	p  = (t.O2  * IQA_O2_WEIGHT);
+	p *= (t.CF  * IQA_CF_WEIGHT);
+	p *= (t.PH  * IQA_PH_WEIGHT);
+	p *= (t.DBO * IQA_DBO_WEIGHT);
+	p *= (t.DT  * IQA_DT_WEIGHT);
+	p *= (t.NT  * IQA_NT_WEIGHT);
+	p *= (t.FT  * IQA_FT_WEIGHT);
+	p *= (t.TU  * IQA_TU_WEIGHT);
+	p *= (t.ST  * IQA_ST_WEIGHT);
+
+	return p;
 }
 
 // Retorna o range em que a medição se encontra
@@ -15,10 +29,10 @@ IQAIndex iqa_index(double iqa)
 	if (iqa >= IQA_BEST_U) return Best;
 
 	if (iqa > IQA_WORST_L && iqa < IQA_WORST_U) return Worst;
-	if (iqa > IQA_BAD_L && iqa < IQA_BAD_U) return Bad;
-	if (iqa > IQA_OK_L && iqa < IQA_OK_U) return OK;
-	if (iqa > IQA_GOOD_L && iqa < IQA_GOOD_U) return Good;
-	if (iqa > IQA_BEST_L && iqa < IQA_BEST_U) return Best;
+	if (iqa > IQA_BAD_L   && iqa < IQA_BAD_U) return Bad;
+	if (iqa > IQA_OK_L    && iqa < IQA_OK_U) return OK;
+	if (iqa > IQA_GOOD_L  && iqa < IQA_GOOD_U) return Good;
+	if (iqa > IQA_BEST_L  && iqa < IQA_BEST_U) return Best;
 }
 
 // Equação ajustada à curva do parâmetro O2
@@ -67,7 +81,7 @@ double qFT (double FT)
 {
 	if (FT > 10) return 1.0;
 
-	double e = FT_WEIGHT_B * FT_WEIGHT_C * pow(FT, FT_WEIGHT_C);
+	double e = FT_WEIGHT_B * pow(FT, FT_WEIGHT_C);
 
 	return FT_WEIGHT_A * exp(e);
 }
