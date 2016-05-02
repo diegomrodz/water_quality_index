@@ -103,19 +103,38 @@ typedef enum
 	Worst
 } IQAIndex;
 
+// Enumeração dos prâmetros
+typedef enum 
+{
+	O2  = 1,
+	CF  = 2,
+	PH  = 3,
+	DBO = 4,
+	DT  = 5,
+	NT  = 6,
+	FT  = 7,
+	TU  = 8,
+	ST  = 9
+} Parameter;
+
 // Definição das funções de cada um dos parâmetros
-double qO2 (double O2);
-double qCF (double CF);
-double qPH (double PH);
-double qDBO (double DBO);
-double qFT (double FT);
-double qNT (double NT);
-double qTU (double TU);
-double qDT (double DT);
-double qST (double ST);
+double qO2  (double);
+double qCF  (double);
+double qPH  (double);
+double qDBO (double);
+double qFT  (double);
+double qNT  (double);
+double qTU  (double);
+double qDT  (double);
+double qST  (double);
 
-double iqa(IQA_T t);
+double iqa(IQA_T);
 
-IQAIndex iqa_index(double iqa);
-     
+IQAIndex iqa_index(double);
+char* iqa_index_string(IQAIndex);
+
+Parameter str_parameter (char*);
+
+void iqa_set(IQA_T*, IQAIndex, double);
+
 #endif

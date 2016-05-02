@@ -16,6 +16,7 @@ tests: libs
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qDT_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qDT_test -lm
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qTU_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qTU_test -lm
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qST_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qST_test -lm
+	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)read_input_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)read_input_test -lm
 
 libs:
 	mkdir src/ bin/

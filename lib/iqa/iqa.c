@@ -1,4 +1,5 @@
 #include <math.h>
+#include <string.h>
 #include "iqa.h"
 
 // Retorna o IQA da medição
@@ -19,6 +20,42 @@ double iqa(IQA_T t)
 	p *= pow(t.ST,  IQA_ST_WEIGHT);
 
 	return p;
+}
+
+Parameter str_parameter (char* p) 
+{
+	if (strcmp(p, "O2")  == 0)  return O2;
+	if (strcmp(p, "CF")  == 0)  return CF;
+	if (strcmp(p, "PH")  == 0)  return PH;
+	if (strcmp(p, "DBO") == 0) return DBO;
+	if (strcmp(p, "DT")  == 0)  return DT;
+	if (strcmp(p, "NT")  == 0)  return NT;
+	if (strcmp(p, "FT")  == 0)  return FT;
+	if (strcmp(p, "TU")  == 0)  return TU;
+	if (strcmp(p, "ST")  == 0)  return ST;
+}
+
+void iqa_set(IQA_T* t, IQAIndex idx, double val) 
+{
+	if (idx == O2)  t->O2  = val;
+	if (idx == CF)  t->CF  = val;
+	if (idx == PH)  t->PH  = val;
+	if (idx == DBO) t->DBO = val;
+	if (idx == DT)  t->DT  = val;
+	if (idx == NT)  t->NT  = val;
+	if (idx == FT)  t->FT  = val;
+	if (idx == TU)  t->TU  = val;
+	if (idx == ST)  t->ST  = val;	
+}
+
+// Converte o IQAIndex para string
+char* iqa_index_string(IQAIndex idx) 
+{
+	if (idx == Best)  return "Ótima";
+	if (idx == Good)  return "Boa";
+	if (idx == OK)    return "Aceitável";
+	if (idx == Bad)   return "Ruim";
+	if (idx == Worst) return "Péssima";	
 }
 
 // Retorna o range em que a medição se encontra
@@ -110,7 +147,6 @@ double qTU (double TU)
 // Equação ajustada à curva do parâmetro DT
 double qDT (double DT)
 {
-	if (DT <= 5) return 0;
 	if (DT > 15) return 9;
 
 	return 1 / (DT_WEIGHT_A * pow(DT + DT_WEIGHT_B, 2) + DT_WEIGHT_C);

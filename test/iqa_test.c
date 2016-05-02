@@ -23,7 +23,7 @@ int main(void)
 		.CF  = qCF(50),
 		.PH  = qPH(8),
 		.DBO = qDBO(3),
-		.DT  = qDT(6),
+		.DT  = qDT(6), // Deve ser maior que 5 para não zerar o IQA?
 		.NT  = qNT(90),
 		.FT  = qFT(1),
 		.TU  = qTU(5),
