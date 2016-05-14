@@ -9,8 +9,8 @@
 #define IQA_DT_WEIGHT  0.10
 #define IQA_NT_WEIGHT  0.10
 #define IQA_FT_WEIGHT  0.10
-#define IQA_TU_WEIGHT  0.10
-#define IQA_ST_WEIGHT  0.10
+#define IQA_TU_WEIGHT  0.08
+#define IQA_ST_WEIGHT  0.08
 
 // Range Ótimo do índice IQA
 #define IQA_BEST_U 100

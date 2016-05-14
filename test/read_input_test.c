@@ -6,25 +6,25 @@
 int main(void) 
 {
 	IQA_T t;
-	char param[3];
+	IQAIndex idx;
 	double val;
 
-	while (scanf("-%s=%lf", param, &val) == 1) 
-	{
-		IQAIndex idx = str_parameter(param);
+	scanf("O2 = %lf\n", &t.O2);
+	scanf("CF = %lf\n", &t.CF);
+	scanf("PH = %lf\n", &t.PH);
+	scanf("DBO = %lf\n", &t.DBO);
+	scanf("DT = %lf\n", &t.DT);
+	scanf("NT = %lf\n", &t.NT);
+	scanf("FT = %lf\n", &t.FT);
+	scanf("TU = %lf\n", &t.TU);
+	scanf("ST = %lf\n", &t.ST);
 
-		iqa_set(&t, idx, val);
+	val = iqa(t);
 
-		printf("%s=%lf\n", param, val);
-	}
+	printf("Resultado: %lf\n", val);
+	
+	idx = iqa_index(val);
 
-	printf("IQA.O2 = %lf\n", t.O2);
-	printf("IQA.CF = %lf\n", t.CF);
-	printf("IQA.PH = %lf\n", t.PH);
-	printf("IQA.DBO = %lf\n", t.DBO);
-	printf("IQA.DT = %lf\n", t.DT);
-	printf("IQA.NT = %lf\n", t.NT);
-	printf("IQA.FT = %lf\n", t.FT);
-	printf("IQA.TU = %lf\n", t.TU);
-	printf("IQA.ST = %lf\n", t.ST);
+	printf("Qualidade: %s\n", iqa_index_string(idx));
+
 }

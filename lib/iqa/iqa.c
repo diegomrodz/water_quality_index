@@ -9,15 +9,15 @@ double iqa(IQA_T t)
 
 	// Realiza o produtório ponderado dos parâmetros com seus
 	// respectivos pesos
-	p  = pow(t.O2,  IQA_O2_WEIGHT);
-	p *= pow(t.CF,  IQA_CF_WEIGHT);
-	p *= pow(t.PH,  IQA_PH_WEIGHT);
-	p *= pow(t.DBO, IQA_DBO_WEIGHT);
-	p *= pow(t.DT,  IQA_DT_WEIGHT);
-	p *= pow(t.NT,  IQA_NT_WEIGHT);
-	p *= pow(t.FT,  IQA_FT_WEIGHT);
-	p *= pow(t.TU,  IQA_TU_WEIGHT);
-	p *= pow(t.ST,  IQA_ST_WEIGHT);
+	p  = pow(qO2(t.O2),  IQA_O2_WEIGHT);
+	p *= pow(qCF(t.CF),  IQA_CF_WEIGHT);
+	p *= pow(qPH(t.PH),  IQA_PH_WEIGHT);
+	p *= pow(qDBO(t.DBO), IQA_DBO_WEIGHT);
+	p *= pow(qDT(t.DT),  IQA_DT_WEIGHT);
+	p *= pow(qNT(t.NT),  IQA_NT_WEIGHT);
+	p *= pow(qFT(t.FT),  IQA_FT_WEIGHT);
+	p *= pow(qTU(t.TU),  IQA_TU_WEIGHT);
+	p *= pow(qST(t.ST),  IQA_ST_WEIGHT);
 
 	return p;
 }
@@ -51,11 +51,11 @@ void iqa_set(IQA_T* t, IQAIndex idx, double val)
 // Converte o IQAIndex para string
 char* iqa_index_string(IQAIndex idx) 
 {
-	if (idx == Best)  return "Ótima";
+	if (idx == Best)  return "Otima";
 	if (idx == Good)  return "Boa";
-	if (idx == OK)    return "Aceitável";
+	if (idx == OK)    return "Aceitavel";
 	if (idx == Bad)   return "Ruim";
-	if (idx == Worst) return "Péssima";	
+	if (idx == Worst) return "Pessima";	
 }
 
 // Retorna o range em que a medição se encontra
