@@ -58,18 +58,32 @@ char* iqa_index_string(IQAIndex idx)
 	if (idx == Worst) return "Pessima";	
 }
 
-// Retorna o range em que a medição se encontra
-IQAIndex iqa_index(double iqa)
+// Retorna o range em que a medição se encontra segundo a CETESB
+IQAIndex iqa_cetesb_index(double iqa)
 {
 	// Checa por valores que ultrapassem os limites
-	if (iqa <= IQA_WORST_L) return Worst;
-	if (iqa >= IQA_BEST_U) return Best;
+	if (iqa <= IQA_CETESB_WORST_L) return Worst;
+	if (iqa >= IQA_CETESB_BEST_U) return Best;
 
-	if (iqa > IQA_WORST_L && iqa < IQA_WORST_U) return Worst;
-	if (iqa > IQA_BAD_L   && iqa < IQA_BAD_U) return Bad;
-	if (iqa > IQA_OK_L    && iqa < IQA_OK_U) return OK;
-	if (iqa > IQA_GOOD_L  && iqa < IQA_GOOD_U) return Good;
-	if (iqa > IQA_BEST_L  && iqa < IQA_BEST_U) return Best;
+	if (iqa > IQA_CETESB_WORST_L && iqa < IQA_CETESB_WORST_U) return Worst;
+	if (iqa > IQA_CETESB_BAD_L   && iqa < IQA_CETESB_BAD_U) return Bad;
+	if (iqa > IQA_CETESB_OK_L    && iqa < IQA_CETESB_OK_U) return OK;
+	if (iqa > IQA_CETESB_GOOD_L  && iqa < IQA_CETESB_GOOD_U) return Good;
+	if (iqa > IQA_CETESB_BEST_L  && iqa < IQA_CETESB_BEST_U) return Best;
+}
+
+// Retorna o range em que a medição se encontra segundo o CONAMA
+IQAIndex iqa_conama_index(double iqa)
+{
+	// Checa por valores que ultrapassem os limites
+	if (iqa <= IQA_CONAMA_WORST_L) return Worst;
+	if (iqa >= IQA_CONAMA_BEST_U) return Best;
+
+	if (iqa > IQA_CONAMA_WORST_L && iqa < IQA_CONAMA_WORST_U) return Worst;
+	if (iqa > IQA_CONAMA_BAD_L   && iqa < IQA_CONAMA_BAD_U) return Bad;
+	if (iqa > IQA_CONAMA_OK_L    && iqa < IQA_CONAMA_OK_U) return OK;
+	if (iqa > IQA_CONAMA_GOOD_L  && iqa < IQA_CONAMA_GOOD_U) return Good;
+	if (iqa > IQA_CONAMA_BEST_L  && iqa < IQA_CONAMA_BEST_U) return Best;
 }
 
 // Equação ajustada à curva do parâmetro O2

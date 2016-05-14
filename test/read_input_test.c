@@ -6,7 +6,7 @@
 int main(void) 
 {
 	IQA_T t;
-	IQAIndex idx;
+	IQAIndex idx_cetesb, idx_conama;
 	double val;
 
 	scanf("O2 = %lf\n", &t.O2);
@@ -23,8 +23,10 @@ int main(void)
 
 	printf("Resultado: %lf\n", val);
 	
-	idx = iqa_index(val);
+	idx_cetesb = iqa_cetesb_index(val);
+	idx_conama = iqa_conama_index(val);
 
-	printf("Qualidade: %s\n", iqa_index_string(idx));
+	printf("Qualidade segundo CETESB: %s\n", iqa_index_string(idx_cetesb));
+	printf("Qualidade segundo CONAMA: %s\n", iqa_index_string(idx_conama));
 
 }

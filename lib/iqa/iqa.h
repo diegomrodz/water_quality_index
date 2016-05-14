@@ -12,25 +12,45 @@
 #define IQA_TU_WEIGHT  0.08
 #define IQA_ST_WEIGHT  0.08
 
-// Range Ótimo do índice IQA
-#define IQA_BEST_U 100
-#define IQA_BEST_L 80
+// Range Ótimo do índice IQA segundo a CETESB
+#define IQA_CETESB_BEST_U 100
+#define IQA_CETESB_BEST_L 80
 
-// Range Bom do índice IQA
-#define IQA_GOOD_U 79
-#define IQA_GOOD_L 51
+// Range Bom do índice IQA segundo a CETESB
+#define IQA_CETESB_GOOD_U 79
+#define IQA_CETESB_GOOD_L 51
 
-// Range Aceitável do índice IQA
-#define IQA_OK_U 50
-#define IQA_OK_L 37
+// Range Aceitável do índice IQA segundo a CETESB
+#define IQA_CETESB_OK_U 50
+#define IQA_CETESB_OK_L 37
 
-// Range Ruim do índice IQA
-#define IQA_BAD_U 36
-#define IQA_BAD_L 20
+// Range Ruim do índice IQA segundo a CETESB
+#define IQA_CETESB_BAD_U 36
+#define IQA_CETESB_BAD_L 20
 
-// Range Péssima do índice IQA
-#define IQA_WORST_U 19
-#define IQA_WORST_L 0
+// Range Péssima do índice IQA segundo a CETESB
+#define IQA_CETESB_WORST_U 19
+#define IQA_CETESB_WORST_L 0
+
+// Range Ótimo do índice IQA segundo o CONAMA
+#define IQA_CONAMA_BEST_U 100
+#define IQA_CONAMA_BEST_L 91
+
+// Range Bom do índice IQA segundo o CONAMA
+#define IQA_CONAMA_GOOD_U 90
+#define IQA_CONAMA_GOOD_L 71
+
+// Range Aceitável do índice IQA segundo o CONAMA
+#define IQA_CONAMA_OK_U 70
+#define IQA_CONAMA_OK_L 51
+
+// Range Ruim do índice IQA segundo o CONAMA
+#define IQA_CONAMA_BAD_U 50
+#define IQA_CONAMA_BAD_L 26
+
+// Range Péssima do índice IQA segundo o CONAMA
+#define IQA_CONAMA_WORST_U 25
+#define IQA_CONAMA_WORST_L 0
 
 // Pesos para equação do percentual de oxigênio dissolvido
 #define O2_WEIGHT_A 100.8
@@ -130,7 +150,9 @@ double qST  (double);
 
 double iqa(IQA_T);
 
-IQAIndex iqa_index(double);
+IQAIndex iqa_cetesb_index(double);
+IQAIndex iqa_conama_index(double);
+
 char* iqa_index_string(IQAIndex);
 
 Parameter str_parameter (char*);
