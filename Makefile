@@ -17,6 +17,8 @@ tests: libs
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qTU_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qTU_test -lm
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)qST_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)qST_test -lm
 	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)read_input_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)read_input_test -lm
+	$(CC) -std=$(STD) -W -Wall -Wpedantic $(TESTS)glade_test.c $(wildcard src/*) -I$(INCLUDE_PATH) -o bin/$(TESTS)glade_test -lm `pkg-config --cflags gtk+-3.0` `pkg-config --libs gtk+-3.0`
+	$(CC) -std=$(STD) -W -Wall -Wpedantic main.c $(wildcard src/*) -I$(INCLUDE_PATH) -o iqa -lm `pkg-config --cflags gtk+-3.0` `pkg-config --libs gtk+-3.0`
 
 libs:
 	mkdir src/ bin/
