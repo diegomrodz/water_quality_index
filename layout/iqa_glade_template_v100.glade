@@ -2,6 +2,60 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
+  <object class="GtkAdjustment" id="adjustmentSpin">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin1">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin2">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin3">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin4">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin5">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin6">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin7">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentSpin8">
+    <property name="lower">0.01</property>
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkWindow" id="window">
     <property name="can_focus">False</property>
     <property name="resizable">False</property>
@@ -246,9 +300,16 @@
               <object class="GtkSpinButton" id="spinCF">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="activates_default">True</property>
+                <property name="width_chars">4</property>
+                <property name="max_width_chars">3</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="progress_pulse_step">0</property>
+                <property name="input_purpose">number</property>
+                <property name="adjustment">adjustmentSpin</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
+                <property name="numeric">True</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -260,6 +321,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin1</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>
@@ -273,6 +335,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin2</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>
@@ -286,6 +349,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin3</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>
@@ -299,6 +363,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin4</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>
@@ -312,6 +377,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin5</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>
@@ -325,6 +391,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin6</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>
@@ -338,6 +405,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin7</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>
@@ -351,6 +419,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">0.00</property>
+                <property name="adjustment">adjustmentSpin8</property>
                 <property name="climb_rate">0.01</property>
                 <property name="digits">2</property>
               </object>

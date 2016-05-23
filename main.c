@@ -8,8 +8,8 @@ void set_spin_btn(GtkSpinButton**, char*);
 void set_spin_btn_value(GtkSpinButton**, double);
 double get_spin_btn_value(GtkSpinButton**);
 void set_entry(GtkEntry**, char*);
-void set_entry_value(GtkEntry**, double);
-double get_entry_value(GtkEntry**);
+void set_entry_value(GtkEntry**, char*);
+char* get_entry_value(GtkEntry**);
 
 const char* gTemplatePath = "layout/iqa_glade_template_v100.glade";
 
@@ -36,12 +36,20 @@ GtkEntry* gEntryTU;
 GtkEntry* gEntryOD;
 GtkEntry* gEntryST;
 
+GtkEntry* gEntryIQA;
+GtkEntry* gEntryIQAIndex;
+
+GtkButton* gBtnCalculate;
+GtkButton* gBtnClean;
+GtkButton* gBtnReport;
+GtkButton* gBtnAbout;
+
 void set_spin_btn(GtkSpinButton** obj, char* id) 
 {
     *obj = GTK_SPIN_BUTTON(gtk_builder_get_object(gBuilder, id));
 }
 
-void set_entry(GtkEntry** obj, char*) 
+void set_entry(GtkEntry** obj, char* id) 
 {
     *obj = GTK_ENTRY(gtk_builder_get_object(gBuilder, id));
 }
@@ -57,15 +65,14 @@ double get_spin_btn_value(GtkSpinButton** obj)
     return (double)gtk_spin_button_get_value(*obj);
 }
 
-void set_entry_value(GtkEntry** obj, double value) 
+void set_entry_value(GtkEntry** obj, char* value) 
 {
-    gtk_entry_set_value(*obj, value);
-    gtk_entry_update(*obj);
+    gtk_entry_set_text(*obj, value);
 }
 
-double get_entry_value(GtkEntry** obj)
+char* get_entry_value(GtkEntry** obj)
 {
-    return (double)gtk_entry_get_value(*obj);
+    return (char*)gtk_entry_get_text(*obj);
 }
 
 int main(int argc, char* argv[]) 
@@ -98,8 +105,14 @@ int main(int argc, char* argv[])
         set_spin_btn(&gSpinST, "spinST");
 
         set_spin_btn_value(&gSpinCF, IQA_CF_WEIGHT);
-
-        printf("%lf\n", get_spin_btn_value(&gSpinCF));        
+        set_spin_btn_value(&gSpinPH, IQA_PH_WEIGHT);
+        set_spin_btn_value(&gSpinDBO, IQA_DBO_WEIGHT);
+        set_spin_btn_value(&gSpinNT, IQA_NT_WEIGHT);
+        set_spin_btn_value(&gSpinFT, IQA_FT_WEIGHT);
+        set_spin_btn_value(&gSpinDT, IQA_DT_WEIGHT);
+        set_spin_btn_value(&gSpinTU, IQA_TU_WEIGHT);
+        set_spin_btn_value(&gSpinOD, IQA_O2_WEIGHT);
+        set_spin_btn_value(&gSpinST, IQA_ST_WEIGHT);    
     }
 
     { // Setting up Entries
@@ -112,8 +125,6 @@ int main(int argc, char* argv[])
         set_entry(&gEntryTU, "entryTU");
         set_entry(&gEntryOD, "entryOD");
         set_entry(&gEntryST, "entryST");
-
-        set_entry_value(&gEntryCF, 90);
     }
 
     gtk_widget_show_all(gWindow);
