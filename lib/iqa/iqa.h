@@ -113,6 +113,21 @@ typedef struct
 	double ST;
 } IQA_T;
 
+// Estrutura que carrega os pesoas do IQA
+typedef struct 
+{
+	// Parâmetros na ordem de relevância para o índice
+	double O2;
+	double CF;
+	double PH;
+	double DBO;
+	double DT;
+	double NT;
+	double FT;
+	double TU;
+	double ST;    
+} IQA_W_T;
+
 // Enumeração da classificação do IQA
 typedef enum 
 {
@@ -149,6 +164,9 @@ double qDT  (double);
 double qST  (double);
 
 double iqa(IQA_T);
+double iqa_c(IQA_T, IQA_W_T);
+
+int validate_t(IQA_T);
 
 IQAIndex iqa_cetesb_index(double);
 IQAIndex iqa_conama_index(double);

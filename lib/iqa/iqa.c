@@ -22,6 +22,25 @@ double iqa(IQA_T t)
 	return p;
 }
 
+double iqa_c(IQA_T t, IQA_W_T w) 
+{
+    double p;
+	
+    // Realiza o produtório ponderado dos parâmetros com seus
+	// respectivos pesos
+	p  = pow(qO2(t.O2),  w.O2);
+	p *= pow(qCF(t.CF),  w.CF);
+	p *= pow(qPH(t.PH),  w.PH);
+	p *= pow(qDBO(t.DBO), w.DBO);
+	p *= pow(qDT(t.DT),  w.DT);
+	p *= pow(qNT(t.NT),  w.NT);
+	p *= pow(qFT(t.FT),  w.FT);
+	p *= pow(qTU(t.TU),  w.TU);
+	p *= pow(qST(t.ST),  w.ST);
+
+	return p;
+}
+
 Parameter str_parameter (char* p) 
 {
 	if (strcmp(p, "O2")  == 0)  return O2;
@@ -46,6 +65,13 @@ void iqa_set(IQA_T* t, IQAIndex idx, double val)
 	if (idx == FT)  t->FT  = val;
 	if (idx == TU)  t->TU  = val;
 	if (idx == ST)  t->ST  = val;	
+}
+
+int validate_t(IQA_T t) 
+{
+    return (t.O2 > 0 && t.CF > 0 && t.PH  > 0 &&
+            t.DT > 0 && t.NT > 0 && t.FT  > 0 &&
+            t.TU > 0 && t.ST > 0 && t.DBO > 0);
 }
 
 // Converte o IQAIndex para string
