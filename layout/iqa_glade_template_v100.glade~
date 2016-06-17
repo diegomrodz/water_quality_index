@@ -224,6 +224,7 @@
               <object class="GtkEntry" id="entryCF">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="input_purpose">digits</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -463,6 +464,8 @@
                 <property name="can_focus">False</property>
                 <property name="margin_top">15</property>
                 <property name="model">liststore1</property>
+                <property name="active">1</property>
+                <property name="id_column">0</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>

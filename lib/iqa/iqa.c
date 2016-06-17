@@ -144,7 +144,7 @@ double qPH (double PH)
 
 	double e = PH_WEIGHT_B * PH + PH_WEIGHT_C * pow(PH, 2);
 
-	return PH_WEIGHT_A * pow(PH, e) + 5.213;
+	return PH_WEIGHT_A * pow(PH, e) + PH_WEIGHT_D;
 }
 
 // Equação ajustada à curva do parâmetro DBO
@@ -152,8 +152,7 @@ double qDBO (double DBO)
 {
 	if (DBO > 30) return 2.0;
 
-//	return DBO_WEIGHT_A * exp(DT_WEIGHT_B * DBO);
-	return (102.6 * exp(-0.1101 * DBO));
+	return DBO_WEIGHT_A * exp(DT_WEIGHT_B * DBO);
 }
 
 // Equação ajustada à curva do parâmetro FT

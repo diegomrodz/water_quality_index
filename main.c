@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <glib.h>
 #include <math.h>
 #include <gtk/gtk.h>
+#include <glib/gstdio.h>
 #include <string.h>
 #include "iqa/iqa.h"
 
@@ -41,6 +43,8 @@ GtkEntry* gEntryST;
 GtkEntry* gEntryIQA;
 GtkEntry* gEntryIQAIndex;
 
+GtkComboBox* gComboIQAIndex;
+
 GtkButton* gBtnCalculate;
 GtkButton* gBtnClean;
 GtkButton* gBtnReport;
@@ -54,6 +58,11 @@ void set_spin_btn(GtkSpinButton** obj, char* id)
 void set_entry(GtkEntry** obj, char* id) 
 {
     *obj = GTK_ENTRY(gtk_builder_get_object(gBuilder, id));
+}
+
+void set_combo_box(GtkComboBox** obj, char* id) 
+{
+    *obj = GTK_COMBO_BOX(gtk_builder_get_object(gBuilder, id));
 }
 
 void set_spin_btn_value(GtkSpinButton** obj, double value) 
@@ -77,33 +86,62 @@ char* get_entry_value(GtkEntry** obj)
     return (char*)gtk_entry_get_text(*obj);
 }
 
+double get_entry_value_d(GtkEntry** obj) 
+{
+    char* text = get_entry_value(obj);
+
+    return atof(text);
+}
+
 void set_btn(GtkButton** obj, char* id) 
 {
     *obj = GTK_BUTTON(gtk_builder_get_object(gBuilder, id));
 }
 
-char* util_d2s(double d) 
+void print_iqa_t(IQA_T* t) 
 {
-    char s[sizeof(d)];
-    memcpy(&s, &d, sizeof(d));
-    return s;
+    g_printf("\tIQA_T[O2] = %lf \n", t->O2);
+    g_printf("\tIQA_T[CF] = %lf \n", t->CF);
+    g_printf("\tIQA_T[PH] = %lf \n", t->PH);
+    g_printf("\tIQA_T[DBO] = %lf \n", t->DBO);
+    g_printf("\tIQA_T[DT] = %lf \n", t->DT);
+    g_printf("\tIQA_T[NT] = %lf \n", t->NT);
+    g_printf("\tIQA_T[FT] = %lf \n", t->FT);
+    g_printf("\tIQA_T[TU] = %lf \n", t->TU);
+    g_printf("\tIQA_T[ST] = %lf \n", t->ST);
 }
 
-void calculate_iqa() 
+void print_iqa_w_t(IQA_T* t) 
+{
+    g_printf("\tIQA_W_T[O2] = %lf \n", t->O2);
+    g_printf("\tIQA_W_T[CF] = %lf \n", t->CF);
+    g_printf("\tIQA_W_T[PH] = %lf \n", t->PH);
+    g_printf("\tIQA_W_T[DBO] = %lf \n", t->DBO);
+    g_printf("\tIQA_W_T[DT] = %lf \n", t->DT);
+    g_printf("\tIQA_W_T[NT] = %lf \n", t->NT);
+    g_printf("\tIQA_W_T[FT] = %lf \n", t->FT);
+    g_printf("\tIQA_W_T[TU] = %lf \n", t->TU);
+    g_printf("\tIQA_W_T[ST] = %lf \n", t->ST);
+}
+
+
+void calculate_iqa(GtkWidget* widget) 
 {
     IQA_T iqa_t;
     IQA_W_T iqa_w_t;
-    double iqa;
-    
-    iqa_t.O2 = atof(get_entry_value(&gEntryOD));
-    iqa_t.CF = atof(get_entry_value(&gEntryCF));
-    iqa_t.PH = atof(get_entry_value(&gEntryPH));
-    iqa_t.DBO = atof(get_entry_value(&gEntryDBO));
-    iqa_t.DT = atof(get_entry_value(&gEntryDT));
-    iqa_t.NT = atof(get_entry_value(&gEntryNT));
-    iqa_t.FT = atof(get_entry_value(&gEntryFT));
-    iqa_t.TU = atof(get_entry_value(&gEntryTU));
-    iqa_t.ST = atof(get_entry_value(&gEntryST));
+    IQAIndex idx;
+    double result;
+    char result_text[10];    
+
+    iqa_t.O2 = get_entry_value_d(&gEntryOD);
+    iqa_t.CF = get_entry_value_d(&gEntryCF);
+    iqa_t.PH = get_entry_value_d(&gEntryPH);
+    iqa_t.DBO = get_entry_value_d(&gEntryDBO);
+    iqa_t.DT = get_entry_value_d(&gEntryDT);
+    iqa_t.NT = get_entry_value_d(&gEntryNT);
+    iqa_t.FT = get_entry_value_d(&gEntryFT);
+    iqa_t.TU = get_entry_value_d(&gEntryTU);
+    iqa_t.ST = get_entry_value_d(&gEntryST);
     
     if ( ! validate_t(iqa_t)) 
     {
@@ -120,17 +158,29 @@ void calculate_iqa()
     iqa_w_t.TU = get_spin_btn_value(&gSpinTU);
     iqa_w_t.ST = get_spin_btn_value(&gSpinST);
     
-    iqa = iqa_c(iqa_t, iqa_w_t);    
+    result = iqa_c(iqa_t, iqa_w_t);
 
-    set_entry_value(&gEntryIQA, util_d2s(iqa));
+    g_print("Nova Medicao\n\n");
+    g_print("\tValores do IQA:\n");
+    print_iqa_t(&iqa_t);
 
-    printf("%lf", iqa);
+    g_print("\n\tPesos da Medição:\n");
+    print_iqa_w_t(&iqa_w_t);
+
+    g_printf("Resultado: %lf\n", result);
+
+    sprintf(result_text, "%lf", result);
+
+    idx = iqa_conama_index(result);
+
+    set_entry_value(&gEntryIQA, result_text);
+    set_entry_value(&gEntryIQAIndex, iqa_index_string(idx));
 }
 
 int main(int argc, char* argv[]) 
 {
     GError* err = NULL;
-
+    
     gtk_init(&argc, &argv);
 
     gBuilder = gtk_builder_new();
@@ -177,6 +227,9 @@ int main(int argc, char* argv[])
         set_entry(&gEntryTU, "entryTU");
         set_entry(&gEntryOD, "entryOD");
         set_entry(&gEntryST, "entryST");
+
+        set_entry(&gEntryIQA, "entryIQA");
+        set_entry(&gEntryIQAIndex, "entryIQAIndex");
     }
 
     { // Setting up buttons

@@ -67,6 +67,7 @@
 #define PH_WEIGHT_A 0.05421
 #define PH_WEIGHT_B 1.23
 #define PH_WEIGHT_C -0.09873
+#define PH_WEIGHT_D 5.213
 
 // Pesos para equação do DBO (Demanda Bioquímica de Oxigênio)
 #define DBO_WEIGHT_A 102.6
